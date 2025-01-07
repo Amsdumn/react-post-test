@@ -42,7 +42,6 @@ const RegistrationForm: React.FC = () => {
     <div className="max-w-md mx-auto p-6 bg-gray-100 dark:bg-slate-900 rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4 dark:text-white">User Registration</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* Email Field */}
         <div className="mb-4">
           <label htmlFor="email" className="block font-semibold mb-1 dark:text-white">
             Email
@@ -58,7 +57,6 @@ const RegistrationForm: React.FC = () => {
           )}
         </div>
 
-        {/* Password Field */}
         <div className="mb-4">
           <label htmlFor="password" className="block font-semibold mb-1 dark:text-white">
             Password
@@ -74,7 +72,6 @@ const RegistrationForm: React.FC = () => {
           )}
         </div>
 
-        {/* Confirm Password Field */}
         <div className="mb-4">
           <label htmlFor="confirmPassword" className="block font-semibold mb-1 dark:text-white">
             Confirm Password

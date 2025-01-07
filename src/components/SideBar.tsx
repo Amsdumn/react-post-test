@@ -21,6 +21,10 @@ const Sidebar: React.FC = () => {
       to: '/register',
       text: 'Register'
     },
+    {
+      to: '/shopping',
+      text: 'Shopping'
+    },
   ]
 
   return (

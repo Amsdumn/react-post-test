@@ -83,9 +83,9 @@ const ProductManagementPage: React.FC = () => {
 
       <div className="mb-4">
         <h2 className="text-xl font-semibold mb-4 dark:text-white">Add Product</h2>
-        <div className="flex items-center">
+        <div className="flex items-center flex-auto flex-wrap">
           <div>
-            <label htmlFor="Name" className="block text-xs text-slate-900 dark:text-white mb-2">Name</label>
+            <label htmlFor="Name" className="block text-xs text-slate-900 dark:text-white my-2">Name</label>
             <input
               type="text"
               placeholder="Name"
@@ -97,7 +97,7 @@ const ProductManagementPage: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Name" className="block text-xs text-slate-900 dark:text-white mb-2">Price</label>
+            <label htmlFor="Price" className="block text-xs text-slate-900 dark:text-white my-2">Price</label>
             <input
               type="number"
               placeholder="Price"
@@ -109,7 +109,7 @@ const ProductManagementPage: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Name" className="block text-xs text-slate-900 dark:text-white mb-2">Description</label>
+            <label htmlFor="Description" className="block text-xs text-slate-900 dark:text-white my-2">Description</label>
             <input
               type="text"
               placeholder="Description"
@@ -120,7 +120,7 @@ const ProductManagementPage: React.FC = () => {
               className="border p-2 mr-2 dark:text-white"
             />
           </div>
-          <button disabled={newProduct.name == ''} onClick={addProduct} className="bg-blue-500 text-white mt-6 px-4 py-2 disabled:opacity-25 disabled:grayscale">
+          <button disabled={newProduct.name == ''} onClick={addProduct} className="bg-blue-500 text-white mt-8 px-4 py-2 disabled:opacity-25 disabled:grayscale">
             <div className="flex items-center">
               <IoMdAdd />
               <span>Add</span>
@@ -132,42 +132,53 @@ const ProductManagementPage: React.FC = () => {
       {editingProduct && (
         <div className="mb-4">
           <h2 className="text-xl font-semibold mb-4 dark:text-white">Edit Product</h2>
-          <input
-            type="text"
-            placeholder="Name"
-            value={editingProduct.name}
-            onChange={(e) =>
-              setEditingProduct({ ...editingProduct, name: e.target.value })
-            }
-            className="border p-2 mr-2"
-          />
-          <input
-            type="number"
-            placeholder="Price"
-            value={editingProduct.price}
-            onChange={(e) =>
-              setEditingProduct({ ...editingProduct, price: +e.target.value })
-            }
-            className="border p-2 mr-2"
-          />
-          <input
-            type="text"
-            placeholder="Description"
-            value={editingProduct.description}
-            onChange={(e) =>
-              setEditingProduct({
-                ...editingProduct,
-                description: e.target.value,
-              })
-            }
-            className="border p-2 mr-2"
-          />
-          <button
-            onClick={updateProduct}
-            className="bg-green-500 text-white px-4 py-2 focus:outline-none"
-          >
-            Update
-          </button>
+          <div className="flex items-center flex-auto flex-wrap">
+            <div>
+              <label htmlFor="Name" className="block text-xs text-slate-900 dark:text-white my-2">Name</label>
+              <input
+                type="text"
+                placeholder="Name"
+                value={editingProduct.name}
+                onChange={(e) =>
+                  setEditingProduct({ ...editingProduct, name: e.target.value })
+                }
+                className="border p-2 mr-2 dark:text-white"
+              />
+            </div>
+            <div>
+              <label htmlFor="Price" className="block text-xs text-slate-900 dark:text-white my-2">Price</label>
+              <input
+                type="number"
+                placeholder="Price"
+                value={editingProduct.price}
+                onChange={(e) =>
+                  setEditingProduct({ ...editingProduct, price: +e.target.value })
+                }
+                className="border p-2 mr-2 dark:text-white"
+              />
+            </div>
+            <div>
+              <label htmlFor="Description" className="block text-xs text-slate-900 dark:text-white my-2">Description</label>
+              <input
+                type="text"
+                placeholder="Description"
+                value={editingProduct.description}
+                onChange={(e) =>
+                  setEditingProduct({
+                    ...editingProduct,
+                    description: e.target.value,
+                  })
+                }
+                className="border p-2 mr-2 dark:text-white"
+              />
+            </div>
+            <button
+              onClick={updateProduct}
+              className="bg-green-500 text-white px-4 py-2 mt-8 focus:outline-none"
+            >
+              Update
+            </button>
+          </div>
         </div>
       )}
 
@@ -181,45 +192,47 @@ const ProductManagementPage: React.FC = () => {
             Export to CSV
           </button>
         </div>
-        <table className="table-auto w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-100 dark:bg-slate-900 dark:text-white">
-              <th className="border border-gray-300 px-4 py-2 w-5">#</th>
-              <th className="border border-gray-300 px-4 py-2">Name</th>
-              <th className="border border-gray-300 px-4 py-2">Price</th>
-              <th className="border border-gray-300 px-4 py-2">Description</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentPageItems.map((product) => (
-              <tr key={product.id} className="dark:text-white">
-                <td className="border border-gray-300 px-4 py-2">{product.index}</td>
-                <td className="border border-gray-300 px-4 py-2">{product.name}</td>
-                <td className="border border-gray-300 px-4 py-2">{product.price}</td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {product.description}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <div className="flex items-center justify-center">
-                    <button
-                      onClick={() => setEditingProduct(product)}
-                      className="bg-green-500 text-white px-2 py-1 mr-2 focus:outline-none"
-                    >
-                      <MdOutlineEditNote />
-                    </button>
-                    <button
-                      onClick={() => deleteProduct(product.id)}
-                      className="bg-red-500 text-white px-2 py-1 focus:outline-none"
-                    >
-                      <MdDeleteOutline />
-                    </button>
-                  </div>
-                </td>
+        <div className="overflow-x-scroll">
+          <table className="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100 dark:bg-slate-900 dark:text-white">
+                <th className="border border-gray-300 px-4 py-2 w-5">#</th>
+                <th className="border border-gray-300 px-4 py-2">Name</th>
+                <th className="border border-gray-300 px-4 py-2">Price</th>
+                <th className="border border-gray-300 px-4 py-2">Description</th>
+                <th className="border border-gray-300 px-4 py-2">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentPageItems.map((product) => (
+                <tr key={product.id} className="dark:text-white">
+                  <td className="border border-gray-300 px-4 py-2">{product.index}</td>
+                  <td className="border border-gray-300 px-4 py-2">{product.name}</td>
+                  <td className="border border-gray-300 px-4 py-2">{product.price}</td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {product.description}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    <div className="flex items-center justify-center">
+                      <button
+                        onClick={() => setEditingProduct(product)}
+                        className="bg-green-500 text-white px-2 py-1 mr-2 focus:outline-none"
+                      >
+                        <MdOutlineEditNote />
+                      </button>
+                      <button
+                        onClick={() => deleteProduct(product.id)}
+                        className="bg-red-500 text-white px-2 py-1 focus:outline-none"
+                      >
+                        <MdDeleteOutline />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <div className="flex items-center justify-center mt-4 space-x-4">
           <button
             className="p-1 bg-blue-500 text-white rounded-full disabled:opacity-50"

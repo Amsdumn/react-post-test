@@ -8,6 +8,7 @@ import Navbar from "./components/NavBar";
 import Sidebar from "./components/SideBar";
 import ShadowPanel from "./components/ShadowPanel";
 import BtnChatApp from "./components/BtnChatApp";
+import ShoppingCartPage from "./pages/ShoppingCart";
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           <Route path="/virtualize-list" element={<VirtualizedListPage />} />
           <Route path="/product-management" element={<ProductManagementPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/shopping" element={<ShoppingCartPage />} />
         </Routes>
       </Router>
     </ThemeProvider>
