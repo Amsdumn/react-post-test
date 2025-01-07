@@ -13,7 +13,6 @@ const PaginatedProvinces: React.FC = () => {
   const { currentPageItems, currentPage, totalPages, nextPage, previousPage } = usePagination(provinces, { itemsPerPage: 10 });
 
   useEffect(() => {
-    // ดึงข้อมูลจากไฟล์ JSON
     const fetchProvinces = async () => {
       const response = await fetch("/complete_provinces_regions.json");
       const data = await response.json();
@@ -25,28 +24,27 @@ const PaginatedProvinces: React.FC = () => {
 
   return (
     <div className="relative">
-      <h1 className="text-xl font-bold text-center mb-4">Provinces</h1>
-      <ul className="list-disc pl-5">
+      <h1 className="text-xl font-bold text-center mb-4 dark:text-white">Hook Pagination</h1>
+      <ul>
         {currentPageItems.map((province) => (
-          <li className="py-2" key={province.id}>
-            {province.name_th} ({province.name_en})
+          <li className="py-2 dark:text-white" key={province.id}>
+            {province.index}. {province.name_th} ({province.name_en})
           </li>
         ))}
       </ul>
-      {/* Pagination Controls */}
-      <div className="flex items-center justify-center mt-4 space-x-2">
+      <div className="flex items-center justify-center mt-4 space-x-4">
         <button
-          className="p-4 bg-blue-500 text-white rounded-full disabled:opacity-50"
+          className="p-1 bg-blue-500 text-white rounded-full disabled:opacity-50"
           disabled={currentPage === 1}
           onClick={previousPage}
         >
           <GrFormPrevious />
         </button>
-        <span>
+        <span className="dark:text-white">
           Page {currentPage} of {totalPages}
         </span>
         <button
-          className="p-4 bg-blue-500 text-white rounded-full disabled:opacity-50"
+          className="p-1 bg-blue-500 text-white rounded-full disabled:opacity-50"
           disabled={currentPage === totalPages}
           onClick={nextPage}
         >

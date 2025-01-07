@@ -5,7 +5,7 @@ interface PaginationConfig {
 }
 
 interface PaginationResult<T> {
-  currentPageItems: T[];
+  currentPageItems: (T & { index: number })[];
   currentPage: number;
   totalPages: number;
   goToPage: (page: number) => void;
@@ -19,10 +19,12 @@ const usePagination = <T>(data: T[], config: PaginationConfig = { itemsPerPage: 
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
-  const currentPageItems = data.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const currentPageItems = data
+    .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    .map((item, index) => ({
+      ...item,
+      index: (currentPage - 1) * itemsPerPage + index + 1,
+    }));
 
   const goToPage = (page: number) => {
     if (page > 0 && page <= totalPages) {

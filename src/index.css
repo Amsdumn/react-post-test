@@ -33,10 +33,20 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: white;
+  color: #1a1a1a;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background-color: #1a1a1a;
+}
+body.dark input {
+  background-color: #1a1a1a;
+}
+
+input {
+  background-color: white;
 }
 
 h1 {
@@ -75,3 +85,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* .dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark p,
+.dark div,
+.dark span {
+  color: white;
+} */
