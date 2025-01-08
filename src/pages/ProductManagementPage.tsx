@@ -187,7 +187,7 @@ const ProductManagementPage: React.FC = () => {
           <h2 className="text-xl font-semibold mb-4 dark:text-white">Product List</h2>
           <button
             onClick={exportToCSV}
-            disabled={currentPageItems.length < 0}
+            disabled={currentPageItems.length == 0}
             className="mb-4 bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none disabled:grayscale disabled:opacity-65"
           >
             Export to CSV
